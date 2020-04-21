@@ -1,37 +1,28 @@
 var diamond = {
-    init : function(){  //初始化函数
-        this.initData()
+    init: function () {  //初始化函数
+        this.initData();
+        this.moveStart()
     },
 
-    initData : function(){  //初始化数据函数
+    initData: function () {  //初始化数据函数
         this.app = document.getElementById("view-circle");
-        this.img = this.app.getElementsByClassName('img-player')
+        this.img = this.app.getElementsByClassName('img-player')[0]
+        this.position = 0;
+        // this.img.style.left = 520 + "px";
     },
 
-    haddle : function(){ //事件监听函数
+    handle: function () { //事件监听函数
 
     },
 
-
-
+    moveStart: function(){
+        var self = this
+        setInterval(function () {
+            self.position += -520;
+            self.img.style.left = self.position + 'px';
+            if (self.position <= -520 * 4) {
+                self.position = 520;
+            }
+        }, 2000)
+    },
 }
-
-
-
-
-
-// var el = {
-//     img: document.getElementsByClassName("img-player")[0]
-// }
-
-// var p = 520
-// el.img.style.left = -520 + "px";
-
-// setInterval(function view() {
-
-//     p += -520
-//     el.img.style.left = p + "px";
-//     if (p<=-520*4){
-//         p=520
-//     }
-// },2000)
