@@ -1,40 +1,122 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-.diamond{
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.justify::after {
+    content: "";
+    width: 100%;
+    display: inline-block;
+}
+
+.diamond {
     width: 520px;
     height: 280px;
-    margin:50px auto;
+    margin: 50px auto;
     overflow: hidden;
     position: relative;
 }
-.diamond .img-player{
-    width: calc(520*5px);
+
+.diamond .img-player {
     position: absolute;
-    transition-property: auto;
-    transition-duration: 0.1s;
-    transition-timing-function: ease;
-    transition-delay: 0s;
+    overflow: hidden;
+    width: calc(520*5px);
+    transition-duration: 0.3s;
+    transform: translate3d(0px, 0px, 0px);
+    backface-visibility: hidden;
+    left: 0px;
+    opacity: 1;
 }
 
-.diamond .img-player .img{
+.diamond .img-player .img {
     float: left;
-    background-color: bisque;
     width: 520px;
     height: 280px;
 }
 
-.diamond .bottom-bar{
-    position:absolute;
+.diamond .nav-bar {
+    position: absolute;
     width: 520px;
     height: 50px;
-    bottom:0;
+    bottom: 0;
     background-color: #33333380;
-    color:white;
+    color: white;
 }
-.diamond .bottom-bar span{
+
+.diamond .nav-bar span {
     line-height: 50px;
     margin-left: 10px;
+}
+
+.diamond .select-nav {
+    position: absolute;
+    left: 10px;
+    background-color: #ffffff40;
+    bottom: 20px;
+    width: 110px;
+    height: 16px;
+    border-radius: 10px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.diamond .select-nav li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 3px;
+    border-radius: 50%;
+    background-color: white;
+    list-style: none;
+    vertical-align: super;
+}
+
+.diamond .select-nav li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.diamond .select-left {
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: #0000007a;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    left: 0;
+    color: white;
+    font-weight: 500;
+    line-height: 30px;
+}
+
+.diamond .select-right {
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background-color: #0000007a;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    right: 0;
+    text-align: right;
+    color: white;
+    font-weight: 500;
+    line-height: 30px;
 }

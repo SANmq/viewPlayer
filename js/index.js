@@ -37,6 +37,6 @@ var diamond = {
             if (self.position <= -520 * 4) {
                 self.position = 520;
             }
-        }, 100)
+        }, 5000)
     },
 }
