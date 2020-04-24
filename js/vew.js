@@ -4,9 +4,16 @@ var viewCircle = {
         // 定义初始的展示位置大小,没有填充默认大小
         this.initData(el);
         this.active();
+        console.log(this.leftButton);
+        this.leftButton.onclick = function (e) {
+            console.log('11111');
+            self.index -= 1;
+        }
     },
 
-    initData: function (el) {
+    initData(el) {
+        //  初始数据的启动及赋值
+        this.elementFather = el;
         this.width = 520;
         this.height = 280;
         this.times = 1000;
@@ -28,12 +35,17 @@ var viewCircle = {
 
     active: function () {
         self = this;
-        this.exhibition.onmouseout = function (e) {
+        this.elementFather.onmouseleave = function (e) {
             self.autoMove(self.times);
         };
-        this.exhibition.onmouseover = function (e) {
+        this.elementFather.onmouseenter = function (e) {
             clearInterval(self.auto);
         };
+        
+        this.rightButton.onclick = function (e) {
+            console.log('2222')
+            self.index += 1;
+        }
     },
 
     autoMove: function (time) {
