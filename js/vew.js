@@ -4,11 +4,6 @@ var viewCircle = {
         // 定义初始的展示位置大小,没有填充默认大小
         this.initData(el);
         this.active();
-        console.log(this.leftButton);
-        this.leftButton.onclick = function (e) {
-            console.log('11111');
-            self.index -= 1;
-        }
     },
 
     initData(el) {
@@ -16,7 +11,7 @@ var viewCircle = {
         this.elementFather = el;
         this.width = 520;
         this.height = 280;
-        this.times = 1000;
+        this.times = 2000;
         this.exhibition = el.getElementsByClassName("img-player")[0];
         this.controlBar = el.getElementsByClassName('select-nav')[0];
         this.leftButton = el.getElementsByClassName('select-left')[0];
@@ -25,53 +20,73 @@ var viewCircle = {
         this.length = this.creatHtml();
         this.li = this.controlBar.getElementsByTagName("li");
         this.li[this.index].className = 'select';
-        this.autoMove(this.times);
-    },
-
-    handle: function (el) {
-        // 获取元素的监听状态
-        console.log(this.rightButton);
+        this.setIndex();
+        this.autoMove();
     },
 
     active: function () {
         self = this;
         this.elementFather.onmouseleave = function (e) {
-            self.autoMove(self.times);
+            self.setIndex();
+            self.leftButton.style.display = 'none';
+            self.rightButton.style.display = 'none';
         };
         this.elementFather.onmouseenter = function (e) {
-            clearInterval(self.auto);
+            clearInterval(self.manual);
+            self.leftButton.style.display = 'block';
+            self.rightButton.style.display = 'block';
         };
-        
+
         this.rightButton.onclick = function (e) {
-            console.log('2222')
-            self.index += 1;
+            clearInterval(self.manual);
+            self.indexChange(1);
+        }
+        this.leftButton.onclick = function (e) {
+            clearInterval(self.manual);
+            self.indexChange(-1);
+        }
+
+        for (let i in this.li) {
+            this.li[i].onclick = function (e) {
+                clearInterval(self.manual);
+                self.index = Number(i);
+            }
         }
     },
 
-    autoMove: function (time) {
-        // 控制轮播图的移动，修改属性
+    indexChange(step) {
+        // 用于按指定方向更新一步步长的方法
+        if (this.index + step > this.length - 1) {
+            this.index = 0;
+        } else if (this.index + step < 0) {
+            this.index = this.length - 1;
+        } else {
+            this.index += step;
+        }
+    },
+
+    setIndex: function () {
+        // 用于设置变动的index
+        var self = this
+        this.manual = setInterval(function () {
+            self.indexChange(1)
+        }, self.times)
+    },
+
+    autoMove: function () {
+        // 根据index属性的值，不断更新轮播图的位置
         var self = this
         this.auto = setInterval(function () {
             let x = -1 * self.index * self.width + 'px'
             self.exhibition.style.transform = `translate3d(${x}, 0px, 0px)`;
             for (let i in self.li) {
-                if (i == self.index) {
-                    self.li[i].className = 'select';
-                } else {
-                    self.li[i].className = '';
-                }
+                self.li[i].className = i == self.index ? 'select' : "";
             }
-            if (self.index == self.length - 1) {
-                self.index = 0;
-            } else {
-                self.index += 1;
-            }
-        }, time)
+        }, 5)
     },
 
     creatHtml: function () {
         // 根据数据产生对应的html代码内容,修改部分样式
-
         var data = {
             0: {
                 url: "img/img1.webp"
@@ -102,15 +117,7 @@ var viewCircle = {
         this.controlBar.style.width = length * 20 + 'px';
         return length
     },
-    user: function () {
-        // 控制用户行为
-    },
-
-
 }
-
-// viewCircle.prototype.width='520px';
-// viewCircle.prototype.height="280px";
 
 el = document.getElementById("view-circle")
 viewCircle.init(el)

@@ -79,6 +79,10 @@ a {
     vertical-align: super;
 }
 
+.diamond .select-nav li:hover{
+    background-color: #ff00008f;
+}
+
 .diamond .select-nav .select{
     background-color: red;
 }
@@ -103,6 +107,7 @@ a {
     color: white;
     font-weight: 500;
     line-height: 30px;
+    display: none;
 }
 
 .diamond .select-right {
@@ -120,4 +125,5 @@ a {
     color: white;
     font-weight: 500;
     line-height: 30px;
+    display: none;
 }
