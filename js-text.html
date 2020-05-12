@@ -47,7 +47,7 @@
     </script> -->
 
 
-    <script>
+    <!-- <script>
         function User(name,password){
             this.name =name;
             this.password = password
@@ -56,6 +56,23 @@
         var user1 = new User('aaa','123456');
         var user2 = new User('bbb','55555');
         var userList = [user1,user2];
+    </script> -->
+
+    <script>
+        var bar=1;
+        function foo(bar){
+            bar=2;
+            console.log(bar);
+            console.log("没有先执行？");
+            alert(bar);
+        }
+        console.log("我要先执行")
+        foo(bar);
+        alert(bar);
+
+
+
+
     </script>
 
 </body>
